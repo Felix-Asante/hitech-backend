@@ -26,7 +26,18 @@ const getAllProducts = async (req, res) => {
 		res.status(400).json({ data: "Failed to fetch data" });
 	}
 };
+// ! get product by id
+const getProductById = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const product = await Product.findById(id).exec();
+		res.status(200).json({ data: product });
+	} catch (err) {
+		res.status(400).json({ data: "Failed to fetch data" });
+	}
+};
 module.exports = {
 	createNewProduct,
 	getAllProducts,
+	getProductById,
 };
